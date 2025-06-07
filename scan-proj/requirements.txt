@@ -1,0 +1,13 @@
+Flask
+Flask_Login
+flask_sqlalchemy
+flask_wtf
+matplotlib
+pandas
+plotly
+python_nmap
+seaborn
+Werkzeug
+WTForms
+Email_validator
+openpyxl
