@@ -1,0 +1,18 @@
+ /* Toast container */
+ .toast {
+    position: fixed;
+    bottom: 5rem;
+    right: -1000px; /* Start off-screen */
+    background-color: #ff4444;
+    color: #fff;
+    padding: 15px 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: right 0.5s ease-in-out;
+    z-index: 1000;
+}
+
+/* Toast animation when visible */
+.toast.show {
+    right: 20px; /* Move into view */
+}

@@ -1,0 +1,152 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: white;
+    margin: 0;
+    padding: 0;
+}
+.navbar{
+    height: 80px;
+    border-bottom: solid;
+    border-color:red;
+    background-color: w;
+  }
+  
+  .logo {
+    height: 3rem;
+    position: absolute;
+    top: 1.25rem;
+    left: 1.25rem;
+  }
+ 
+.btn-2 {
+  outline: none;
+  cursor: pointer;
+  margin: 10px;
+  min-height: 36px;
+  max-width: 200px;
+  width: 100%;
+  font-family: inherit;
+  font-size: inherit;
+  position: relative;
+  display: inline-block;
+  align-items: center;
+  letter-spacing: 0.05rem;
+  font-weight: 700;
+  font-size: 17px;
+  border-radius: 500px;
+  overflow: hidden;
+  background: #314566;
+  color: var(--white);
+ }
+ 
+ .btn-2  span {
+  position: relative;
+  z-index: 10;
+  transition: color 0.4s;
+ }
+ 
+ .btn-2:hover span {
+  color: rgb(255, 255, 255);
+ }
+ 
+ .btn-2::before,
+ .btn-2::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+ }
+ 
+ .btn-2::before {
+  content: "";
+  background: #ffffff;
+  width: 120%;
+  left: -10%;
+  transform: skew(30deg);
+  transition: transform 0.4s cubic-bezier(0.3, 1, 0.8, 1);
+ }
+ 
+ .btn-2:hover::before {
+  transform: translate3d(100%, 0, 0);
+ }
+
+
+
+
+.container h2 {
+    margin: 0;
+    margin-bottom: 16px;
+    font-size: xx-large;
+    font-family: emoji;
+}
+
+.container {
+    margin: 0;
+    width: 100%;
+    padding: 0 10px;
+    background: #ffffff;
+    overflow-x: auto;
+}
+
+.result-table {
+    margin-top: 20px;
+}
+
+.result-table h2 {
+    text-align: center;
+    color: #333;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    min-height: 400px;
+}
+
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 15px;
+    text-align: center;
+    vertical-align: middle;
+    height: 60px;
+}
+
+table th {
+    background-color: #314566;
+    color: white;
+    font-size: 1.1em;
+}
+
+table td {
+    background-color: #f9f9f9;
+    font-size: 1em;
+}
+
+/* Buttons under the table */
+.button-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+
+
+
+footer {
+    text-align: center;
+    padding: 10px 0;
+    background-color: #333;
+    color: white;
+    margin-top: 20px;
+}

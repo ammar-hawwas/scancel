@@ -1,0 +1,267 @@
+.main-section {
+    display: block;
+    padding: 2rem;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.steps-list {
+    font-size: 19px;
+    line-height: 3;
+    color: #555;
+}
+
+.scan-form-section {
+    display: flex;
+}
+
+.scan-form {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    width: 100%;
+    max-width: 600px;
+}
+
+.form-label {
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.dropdown {
+    display: block;
+    width: 100%;
+    margin-top:1rem
+}
+
+.form-input {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+.toggle-option {
+    padding-top: .5rem;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    justify-content: start;
+    margin-bottom: 1rem;
+}
+
+.toggle-label {
+    font-size: 12px;
+}
+
+.toggle-switch input {
+    display: none; /* Hide the default checkbox */
+}
+
+.slider {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+    background-color: #ccc; /* Default background color */
+    border-radius: 20px; /* Rounded corners */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white; /* Circle color */
+    border-radius: 50%; /* Make it round */
+    transition: transform 0.3s ease; /* Smooth transition */
+}
+
+/* Change background color and move the circle when the checkbox is checked */
+input:checked + .slider {
+    background-color: #2196F3; /* Blue background when checked */
+}
+
+input:checked + .slider:before {
+    transform: translateX(20px); /* Move the circle to the right */
+}
+.authorization{
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+.authorization-label  {
+    font-size: 12px;
+}
+.start-scan-button {
+    display: block;
+    width: 100%;
+    padding: 0.5rem;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+ /* Center the loading animation on the page */
+ .loading-animation {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 250px;
+    height: 250px; /* Adjust height for vertical scanning */
+    text-align: center;
+}
+
+.loading-animation .text{
+    position: relative;
+    top: 36%;
+    font-size: 1.5rem;
+    text-align: center;
+    letter-spacing: 10px;
+    animation: opi 4s linear;
+    animation-iteration-count: infinite;
+}
+
+@keyframes opi{
+    0% {
+        opacity: 100%;
+        
+    }
+    50%{
+        opacity: 20%;
+        color: red;
+
+    }
+}
+
+.loading-animation .borders span {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    animation: opi 4s linear;
+    animation-iteration-count: infinite;
+}
+
+.loading-animation .borders span:nth-child(1) {
+    border-left: 2px solid;
+    border-top: 2px solid;
+    left: -30px;
+    top: 20px;
+}
+
+.loading-animation .borders span:nth-child(2) {
+    border-right: 2px solid;
+    border-top: 2px solid;
+    right: -30px;
+    top: 20px;
+}
+
+.loading-animation .borders span:nth-child(3) {
+    border-left: 2px solid;
+    border-bottom: 2px solid;
+    left: -30px;
+    bottom: 20px;
+}
+
+.loading-animation .borders span:nth-child(4) {
+    border-right: 2px solid;
+    border-bottom: 2px solid;
+    right: -30px;
+    bottom: 20px;
+}
+.loading-animation .scan {
+    height: 120px;
+    border-left: 3px solid;
+    position: absolute;
+    top: -60%;
+    left: -0px;
+    animation: scan 4s ease-in-out;
+    animation-iteration-count: infinite;
+}
+@keyframes scan{
+    0% , 100%{
+        left: 0;
+    }
+    50%{
+        left: 100%;
+        color: red;
+    }
+}
+
+
+  .post-scan-section {
+    display: none;
+    width: 30%;
+    margin: 0 auto;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+.post-scan-buttons {    
+    display: flex;
+    flex-direction: column;
+}
+
+.scan-completed-text {
+    text-align: center;
+    font-size: 1rem;
+    font-weight: boldd;
+}
+.btn-2 {
+    cursor: pointer;
+    margin: 10px;
+    min-height: 36px;
+    font-family: inherit;
+    font-size: inherit;
+    position: relative;
+    display: inline-block;
+    align-items: center;
+    letter-spacing: 0.05rem;
+    font-weight: 700;
+    font-size: 17px;
+    border-radius: 500px;
+    overflow: hidden;
+    background: #000;
+    color: #fff;
+   }
+   
+ .show{
+    display: flex;
+    flex-direction: column;
+ }
+
+ .hidden{
+    display: none !important;
+ }
+
+@media screen and (max-width: 768px) {
+
+    .container{
+        flex-direction: column;
+    }
+    .post-scan-section{
+        width: 100%;
+    }
+}
+
+
+
