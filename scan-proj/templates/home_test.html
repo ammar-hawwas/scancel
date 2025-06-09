@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Scancle - Network Security Made Simple</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home_test.css') }}">
+</head>
+<body>
+    <div class="overlay" id="overlay"></div>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="#" class="logo">
+                <img src="{{ url_for('static', filename='Assets/login/logo.png') }}" alt="Scancle Logo">
+                <button class="hamburger">
+                    <svg class="hamburger-icon" viewBox="0 0 24 24" width="24" height="24">
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" fill="currentColor"/>
+                    </svg>                </button>
+                <h2>SCAN<span class="red-text">CEL</span></h2>
+            </a>
+            <div class="nav-links">
+                <div class="sidebar-close">
+                    <i class="fas fa-close"></i>
+                </div>
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#pricing" class="nav-link">Pricing</a>
+            </div>
+            <div class="auth-buttons">
+                {% if current_user.is_authenticated %}
+                    <p class="welcome-message">Welcome, {{ current_user.username }}!</p>
+                    <button class="btn-logout" onclick="window.location.replace('/logout')">Logout</button>
+                {% else %}
+                    <button class="btn-signup" onclick="window.location.replace('/signup')">Signup</button>
+                    <button class="btn-login" onclick="window.location.href('/login')">Login</button>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="home">
+        <div class="hero-content">
+            <h1 class="hero-title">SCAN<span class="highlight">CEL</span></h1>
+            <p class="hero-subtext">Discover open ports. Protect your network, servers, and IT assets.</p>
+            <button class="btn-scan" onclick="scan()">
+                <span>Start Scanning</span>
+                <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section" id="features">
+        <h2 class="section-title">Features</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <img src="{{ url_for('static', filename='Assets/home/scan.avif') }}" alt="Feature 1">
+                <h3>                   IP Scan and Analysis
+                </h3>
+                <p>Users can enter an IP address and select the type of scan they want to performb 
+                    (e.g., port scan, UDP/TCP scan, quick scan).  
+                    The system then analyzes the IP and displays 
+                    the bropen/closed ports and the services associated with them</p>
+            </div>
+            <div class="feature-card">
+                <img src="{{ url_for('static', filename='Assets/home/features.png') }}" alt="Feature 2">
+                <h3>Security Recommendations</h3>
+                <p>For each open port, the website provides security solutions and recommendations to enhance network protection (e.g., using encrypted protocols, disabling unnecessary services, or limiting access).</p>
+            </div>
+            <div class="feature-card">
+                <img src="{{ url_for('static', filename='Assets/home/management.png') }}" alt="Feature 3">
+                <h3> User Account Management</h3>
+                <p>Users need to log in to perform scans. Their scan results are saved and can be accessed later, allowing them to review past scans and download reports at any time.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <h2 class="section-title">About Us</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p> Our team is a group of 10 talented students from the Faculty of Engineering at Mansoura University, specializing in Web Design, Networking, Cybersecurity, and UI/UX. We work together to develop innovative and practical solutions, leveraging our diverse skills to create secure, user-friendly, and efficient digital platforms. Our focus is on applying modern technologies to solve real-world challenges in the tech industry. With strong teamwork, creativity, and technical expertise, we strive to deliver high-quality projects and stand out as a collaborative and driven team.</p>
+                <a href="#" class="btn-read-more">Read More</a>
+            </div>
+            <div class="skills">
+                <div class="skill">
+                    <div class="skill-title">Web Design and UIUX</div>
+                    <div class="skill-progress">
+                        <div class="progress-bar" style="width: 50%;">50%</div>
+                    </div>
+                </div>
+                <div class="skill">
+                    <div class="skill-title">Cybersecurity</div>
+                    <div class="skill-progress">
+                        <div class="progress-bar" style="width: 25%;">25%</div>
+                    </div>
+                </div>
+                <div class="skill">
+                    <div class="skill-title">Networking and AI</div>
+                    <div class="skill-progress">
+                        <div class="progress-bar" style="width: 25%;">25%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing-section" id="pricing">
+        <h2 class="section-title">Pricing</h2>
+        <div class="pricing-cards">
+            <div class="pricing-card basic">
+                <div class="heading">
+                  <h4> Free Plan </h4>
+                  <p>for small websites or blogs</p>
+                </div>
+                <p class="price">
+                  $0
+                  <sub>/month</sub>
+                </p>
+                <ul class="features">
+                  <li>
+                    Limited to one scan per day
+                  </li>
+                  <li>
+                    Basic scan types 
+                  </li>
+                  
+                  <li>
+                    No downloadable report feature
+                  </li>
+                  <li>
+                    No historical scan access 
+                  </li>
+                </ul>
+                <button class="btn-select">SELECT</button>
+              </div>
+              <div class="pricing-card standard">
+                <div class="heading">
+                  <h4>Premium Plan</h4>
+                  <p>for Advanced User</p>
+                </div>
+                <p class="price">
+                  $5
+                  <sub>/month</sub>
+                </p>
+                <ul class="features">
+                  <li>
+                    Unlimited scans per month
+                  </li>
+                  <li>
+                    Full range of scan types4
+                   </li>
+                  <li>
+                    Detailed service and port information
+                  </li>
+                  <li>
+                    Downloadable reports
+                  </li>
+                  <li>
+                    Access to historical scans and results
+                  </li>
+                  <li>
+                    Security recommendations   
+                 </li>
+                  
+                </ul>
+                <button class="btn-select">SELECT</button>
+              </div>
+              <div class="pricing-card premium">
+                <div class="heading">
+                  <h4>Business Plan</h4>
+                  <p>for Team/Business Use</p>
+                </div>
+                <p class="price">
+                  $10
+                  <sub>/month</sub>
+                </p>
+                <ul class="features">
+                  <li>
+                    All features of the Premium Plan
+                  </li>
+                  <li>
+                    Multiple user accounts (up to 5 users)
+                  </li>
+                  <li>
+                    Advanced scanning capabilities                  </li>
+                  <li>
+                    Detailed and custom scan reports                  </li>
+                  <li>
+                    Access to exclusive advanced security features                  </li>
+                  <li>
+                    Advanced team collaboration tools                  </li>
+                  <li>
+                    Custom Scan Scheduling                  </li>
+                  <li>
+                   24/7 priority support
+                  </li>
+                  <li>
+                   Advanced security features
+                  </li>
+                </ul>
+                <button class="btn-select">SELECT</button>
+              </div>
+            </section>
+          </div>
+          
+
+            </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <h3>SCANCEL</h3>
+            <p>"© 2024 Scancel. All rights reserved. Providing secure and efficient IP scanning services for your network. Explore our plans to enhance your network security. Contact us: support@scancel.com | Follow us on Facebook, Twitter, LinkedIn."
+
+            </p>            <ul class="socials">
+                <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fab fa-google-plus"></i></a></li>
+                <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+            </ul>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 SCANCEL. All rights reserved.</p>
+            <ul class="footer-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#blog">Blog</a></li>
+            </ul>
+        </div>
+    </footer>
+    <script src="{{ url_for('static', filename='js/home.js') }}"></script>
+
+</body>
+</html>

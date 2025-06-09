@@ -1,0 +1,313 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>profile</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- fonts google -->
+    <link rel="stylesheet" href="{{url_for('static', filename='css/profile.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/alert.css')}}">
+    <style>
+      /* Container for the entire section */
+.last {
+    margin-top: -92px;
+}
+
+/* Header section */
+.scans-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.scans-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.actions button {
+    margin-left: 8px;
+    padding: 8px 16px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.actions button:hover {
+    background-color: #e0e0e0;
+}
+
+/* List of scans */
+.scan-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.scan-list .row {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    border-bottom: 1px solid #eee;
+}
+
+.scan-list .row:last-child {
+    border-bottom: none;
+}
+
+.scan-list .option-checkbox {
+    margin-right: 8px;
+}
+
+.scan-list .ip-address {
+    flex-grow: 1;
+    margin-right: 8px;
+}
+
+.scan-list .view-more {
+    color: #007bff;
+    text-decoration: none;
+    margin-right: 8px;
+}
+
+.scan-list .view-more:hover {
+    text-decoration: underline;
+}
+
+.scan-list .delete-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: #ff4444;
+}
+
+.scan-list .delete-btn:hover {
+    color: #cc0000;
+}
+    </style>
+</head>
+<body>
+         
+     
+  <div class="navbar">  <a href="#" title="Logo">
+    <img class="logo" src="{{url_for('static', filename='Assets/login/logo.png')}}" srcset="" alt="Logo">
+
+</a>
+<h2 style="position: absolute;top: 1.5rem; left: 4.5rem;">SCANCEL</h2>
+
+
+<div class="buttons">
+
+<div class="button-wrapper" onclick="home()">
+    <button class="btn-2" style="position: absolute;
+    top: .7rem;
+    left: 16rem;
+    width: 124px;
+    font-size: larger;"> 
+        <span>Home</span>
+    </button>
+    <button class="btn-2" style="position: absolute;
+    top: .7rem;
+    left: 26rem;
+    width: 124px;
+    font-size: larger;" onclick="scrollWin()"> 
+        <span>Profile</span>
+    </button>
+    <button class="btn-2" style="position: absolute;
+    top: .7rem;
+    left: 36rem;
+    width: 124px;
+    font-size: larger;"  onclick="fun()"> 
+        <span>scan</span>
+    </button>
+    {% if current_user.is_authenticated %}
+    
+    <!-- Display User Name and Logout Button -->
+    <button class="btn-2" style="position: absolute; top: .7rem; left: 75rem; width: 124px; font-size: larger;" onclick="logout()">
+      <span>Logout</span>
+    </button>
+    <p style="position: absolute; top: 1.5rem; left: 65rem; font-size: larger;">Welcome, {{ current_user.username }}!</p>
+    {% else %}
+    <!-- Display Signup and Login Buttons -->
+    <button class="btn-2" style="position: absolute; top: .7rem; left: 65rem; width: 124px; font-size: larger;" onclick="window.location.href='/signup'">
+      <span>Signup</span>
+    </button>
+    <button class="btn-2" style="position: absolute; top: .7rem; left: 75rem; width: 124px; font-size: larger;" onclick="window.location.href='/login'">
+      <span>Login</span>
+    </button>
+    
+    {% endif %}
+</div>
+</div>
+</div>
+<div class="container">
+    
+    <div class="profilepic"> <img src="{{url_for('static', filename='Assets/profile/profilepic.png')}}" srcset="" alt="">
+      
+    </div>
+    <div class="text">
+        <p class="text1">Name</p>
+        <p class="text2">Organization</p>
+    </div>
+    <div class="buttons" style="display: flex
+    ;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        margin-right: 48px;
+        margin-top: -150px;">
+
+        <div class="box1"><div class="rectangle">
+            <span>Setting  
+                <img src="{{url_for('static', filename='Assets/profile/Setting_fill.png')}}" alt=""
+                 style="    position: absolute;
+                top: -65px;
+                left: 62px;
+            ">
+            </span>
+           
+        </div></div>
+        
+        
+        <div class="box2">
+            <div class="rectangle">
+                 <span>Subscriptions 
+                    <img src="{{url_for('static', filename='Assets/profile/Subscription_fill.png')}}"  alt=""
+                    style="    position: absolute;
+                    top: -55px;
+                    left: 45px; " >
+
+                </span>
+            </div> 
+           <div class="rectangle" style=" margin-top: 28px;
+                         margin-left: 266px;">
+        
+             <span>Contact us
+                <img src="{{url_for('static', filename='Assets/profile/Message_fill.png')}}" srcset=""  alt=""
+                    style="    position: absolute;
+                    top: -55px;
+                    left: 30px; " >  
+             </span> 
+            </div>
+        
+            
+        </div>
+        
+    </div>
+
+</div>
+
+
+</div>
+<!-- <div class="last" style="margin-top: -92px;">
+    <div class="scans-header">
+        <h2>Recent Scans</h2>
+        <div class="actions">
+          <button id="clear-all">Clear All</button>
+          <button id="clear-selected">Clear Selected</button>
+        </div>
+      </div>
+      <div id="options-container">
+        <div class="row">
+          <input type="checkbox" class="option-checkbox">
+          <span class="ip-address">192.168.1.1</span>
+          <a href="#" class="view-more">view more</a>
+          <button class="delete-btn">➖</button>
+        </div>
+        <div class="row">
+          <input type="checkbox" class="option-checkbox">
+          <span class="ip-address">192.168.1.1</span>
+          <a href="#" class="view-more">view more</a>
+          <button class="delete-btn">➖</button>
+        </div>
+        <div class="row">
+          <input type="checkbox" class="option-checkbox">
+          <span class="ip-address">192.168.1.1</span>
+          <a href="#" class="view-more">view more</a>
+          <button class="delete-btn">➖</button>
+        </div>
+        <div class="row">
+          <input type="checkbox" class="option-checkbox">
+          <span class="ip-address">192.168.1.1</span>
+          <a href="#" class="view-more">view more</a>
+          <button class="delete-btn">➖</button>
+        </div>
+        <div class="row">
+            <input type="checkbox" class="option-checkbox">
+            <span class="ip-address">192.168.1.1</span>
+            <a href="#" class="view-more">view more</a>
+            <button class="delete-btn">➖</button>
+          </div>
+          <div class="row">
+            <input type="checkbox" class="option-checkbox">
+            <span class="ip-address">192.168.1.1</span>
+            <a href="#" class="view-more">view more</a>
+            <button class="delete-btn">➖</button>
+          </div>
+          <div class="row">
+            <input type="checkbox" class="option-checkbox">
+            <span class="ip-address">192.168.1.1</span>
+            <a href="#" class="view-more">view more</a>
+            <button class="delete-btn">➖</button>
+          </div>
+      </div>
+    
+</div> 
+ -->
+ <div class="last">
+  <header class="scans-header">
+      <h2>Recent Scans</h2>
+      <div class="actions">
+          <button id="clear-all" aria-label="Clear all scans">Clear All</button>
+          <button id="clear-selected" aria-label="Clear selected scans">Clear Selected</button>
+      </div>
+  </header>
+  <section id="options-container">
+    <table class="scan-table">
+        <thead>
+            <tr>
+                <th>Checkbox</th>
+                <th>Name</th>
+                <th>Scan Type</th>
+                <th>Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Dynamically generate rows using a loop -->
+            {% for scan in scans %}
+            <tr class="row">
+                <td>
+                    <input type="checkbox" id="scan-{{ loop.index }}" class="option-checkbox">
+                </td>
+                <td>
+                    <label for="scan-{{ loop.index }}" class="ip-address">{{ scan.name }}</label>
+                </td>
+                <td>{{ scan.scan_type }}</td>
+                <td>{{ scan.date }}</td>
+                <td>
+                    <a href="/report/{{ scan.id }}" class="view-more" aria-label="View more details">view more</a>
+                    <button class="delete-btn" aria-label="Delete scan">➖</button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+</div>
+
+
+
+</body>
+
+
+
+<script src="{{url_for('static', filename='js/profile.js')}}"></script>
+
+
+
+</html>

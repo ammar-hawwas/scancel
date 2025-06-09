@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Scan Results</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/report.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/alert.css')}}">
+</head>
+<body>
+         
+    <div class="navbar">  <a href="#" title="Logo">
+        <img class="logo" src="{{url_for('static', filename='Assets/login/logo.png')}}" alt="Logo">
+    
+    </a>
+    <h2 style="position: absolute;top: 1.5rem; left: 4.5rem;">SCANCEL</h2>
+    
+    
+<div class="buttons">
+    
+    <div class="button-wrapper">
+        <button class="btn-2" style="position: absolute;
+        top: .7rem;
+        left: 16rem;
+        width: 124px;
+        font-size: larger;" onclick="home()"> 
+            <span>Home</span>
+        </button>
+        <button class="btn-2" style="position: absolute;
+        top: .7rem;
+        left: 26rem;
+        width: 124px;
+        font-size: larger;" onclick="scrollWin()"> 
+            <span>Profile</span>
+        </button>
+        <button class="btn-2" style="position: absolute;
+        top: .7rem;
+        left: 36rem;
+        width: 124px;
+        font-size: larger;"  onclick="fun()"> 
+            <span>scan</span>
+        </button>
+        <button class="btn-2" style="position: absolute;
+        top: .7rem;
+        left: 75rem;
+        width: 124px;
+        font-size: larger;" onclick="logout()"> 
+            <span>logout</span>
+        </button>
+    </div>
+</div>
+</div>
+    <div class="container">
+        <!-- Table to Show Scan Results -->
+        <div class="result-table">
+            <h2>Scan Results</h2>
+            <table id="scan-results">
+                <thead>
+                    <tr>
+                        <!-- 
+                        <th>Ip</th>
+                        <th>Port</th>
+                        <th>Protocol</th>
+                        <th>State</th>
+                        <th>Service</th> 
+                        -->
+                        {% for column in report[0].keys() %}
+                            <th>{{ column }}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in report %}
+                        <tr>
+                            {% for value in row.values() %}
+                                <td>{{ value }}</td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {{report_data}}
+        <!-- Buttons under the table -->
+        <div class="button-container">
+            <button class="btn-2" id="new-scan" onclick="goToNewScan()"><span>New Scan</span></button>
+            <button class="btn-2" id="download-report" onclick="downloadReport()"><span>Download Report</span></button>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 SCANCLE</p>
+    </footer>
+
+    <script src="{{url_for('static', filename='js/report.js')}}"></script>
+       
+</body>
+</html>

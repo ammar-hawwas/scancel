@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Scancle</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Mulish&display=swap"
+            rel="stylesheet"
+        >
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    </head>
+    <body>
+            
+        <div class="navbar">  <a href="#" title="Logo">
+                    <img class="logo" src="{{ url_for('static', filename='Assets/login/logo.png') }}" alt="Logo">
+                
+                </a>
+                <h2 style="position: absolute;top: 1.5rem; left: 4.5rem;">SCANCEL</h2>
+                
+                
+            <div class="buttons">
+                
+                <div class="button-wrapper" onclick="home()">
+                    <button class="btn-2" style="position: absolute;
+                    top: .7rem;
+                    left: 16rem;
+                    width: 124px;
+                    font-size: larger;"> 
+                        <span>Home</span>
+                    </button>
+                    <button class="btn-2" style="position: absolute;
+                    top: .7rem;
+                    left: 26rem;
+                    width: 124px;
+                    font-size: larger;" onclick="scrollWin()"> 
+                        <span>Features</span>
+                    </button>
+                    <button class="btn-2" style="position: absolute;
+                    top: .7rem;
+                    left: 36rem;
+                    width: 124px;
+                    font-size: larger;"  onclick="fun()"> 
+                        <span>About</span>
+                    </button>
+                    <button class="btn-2" style="position: absolute;
+                    top: .7rem;
+                    left: 46rem;
+                    width: 124px;
+                    font-size: larger;"  onclick="fun2()"> 
+                        <span>Pricing</span>
+                    </button>
+                    {% if current_user.is_authenticated %}
+    
+    <!-- Display User Name and Logout Button -->
+    <button class="btn-2" style="position: absolute; top: .7rem; left: 75rem; width: 124px; font-size: larger;" onclick="logout()">
+      <span>Logout</span>
+    </button>
+    <p style="position: absolute; top: 1.5rem; left: 65rem; font-size: larger;">Welcome, {{ current_user.username }}!</p>
+    {% else %}
+    <!-- Display Signup and Login Buttons -->
+    <button class="btn-2" style="position: absolute; top: .7rem; left: 65rem; width: 124px; font-size: larger;" onclick="window.location.href='/signup'">
+      <span>Signup</span>
+    </button>
+    <button class="btn-2" style="position: absolute; top: .7rem; left: 75rem; width: 124px; font-size: larger;" onclick="window.location.href='/login'">
+      <span>Login</span>
+    </button>
+    
+    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="mainsec" id="home">
+           
+            <div class="container">
+                <p class="text">SCAN<span class="red">CEL</span></p>
+            </div>
+            
+            <div class="subtext">
+                <p class="sub1">Discover open ports. </p>
+                <p class="sub2"> Protect your network,servers and IT assets</p>
+            </div>
+            <div class="button">
+                <button class="btn-6" onclick="scan()" type="submit" >
+                    <div class="svg-wrapper-1">
+                      <div class="svg-wrapper">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="50" height="50">
+                          <path fill="none" d="M0 0h24v24H0z"></path>
+                          <path fill="currentColor" d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"></path>
+                        </svg>
+                      </div>
+                    </div>
+                    <span>Start Scanning</span>
+                </button>         
+            </div>
+        </div>
+       
+     
+    <div class="sec2" id="features">
+        <div class="Features">
+            <p >Features</p>
+        </div>
+
+        <div class="ft">
+            <div class="ftpic" style="margin-left: 75px;">
+                <img src="{{url_for('static', filename='Assets/home page/features.png')}}" srcset="" style="    margin-left: 0%px;">
+                <p style="font-size: 33px; margin-left: 63px;margin-top: -20px; font-family: monospace;" >
+                   
+                    Feature 1
+                </p>
+                <p style="font-size: 20px; margin-left: -49px ;margin-top: 5px; font-family: monospace;">
+                    lorem ipsumlorem ipsumlorem ipsum</p>
+            </div>
+            <div class="ftpic" style="margin-left: 150px;">
+                <img src="{{ url_for('static', filename='Assets/home page/features.png') }}" alt="" srcset="" style="    margin-left: 0%px;">
+                <p style="font-size: 33px; margin-left: 63px;margin-top: -20px; font-family: monospace;" >
+                   
+                    Feature 1
+                </p>
+                <p style="font-size: 20px; margin-left: -49px ;margin-top: 5px; font-family: monospace;">
+                    lorem ipsumlorem ipsumlorem ipsum</p>
+            </div>
+            <div class="ftpic" style="margin-left: 150px; ;">
+                <img src="{{ url_for('static', filename='Assets/home page/features.png') }}" alt="" srcset="" style="    margin-left: 0%px;">
+                <p style="font-size: 33px; margin-left: 63px;margin-top: -20px; font-family: monospace;" >
+                   
+                    Feature 1
+                </p>
+                <p style="font-size: 20px; margin-left: -49px ;margin-top: 5px; font-family: monospace;">
+                    lorem ipsumlorem ipsumlorem ipsum</p>
+            </div>
+        </div>        
+        </div>
+        <div class="about-section" id="about">
+            <div class="inner-width">
+              <h1 >About Us</h1>
+              <div class="border"></div>
+              <div class="about-section-row">
+                <div class="about-section-col">
+                  <div class="about">
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga provident ea hic, neque amet sequi temporibus iure aliquid placeat inventore. Quae dolores dolore, cum nulla quas ipsum facere maxime, necessitatibus!
+                    </p>
+                    <a href="#">Read More</a>
+                  </div>
+                </div>
+                <div class="about-section-col">
+                  <div class="skills">
+                    <div class="skill">
+                      <div class="title">Web Design</div>
+                      <div class="progress">
+                        <div class="progress-bar p1"><span>90%</span></div>
+                      </div>
+                    </div>
+    
+                    <div class="skill">
+                      <div class="title">UI Design</div>
+                      <div class="progress">
+                        <div class="progress-bar p2"><span>70%</span></div>
+                      </div>
+                    </div>
+    
+                    <div class="skill">
+                      <div class="title">UX Design</div>
+                      <div class="progress">
+                        <div class="progress-bar p3"><span>50%</span></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="sec4" id="pricing"><h1 
+          style="font-size: 80px;
+          font-weight: bold; color: white;">
+          pricing</h1>
+        </div>
+          <section class="pricing-plans" style="
+          place-items: center;
+          min-height: 100vh;
+          background-color: #171717;
+      ">
+            <div class="pricing-card basic">
+              <div class="heading">
+                <h4>BASIC</h4>
+                <p>for small websites or blogs</p>
+              </div>
+              <p class="price">
+                $2
+                <sub>/month</sub>
+              </p>
+              <ul class="features">
+                <li>
+                  <i class="fa-solid fa-check"></i>
+                  <strong>1 domain</strong> name
+                </li>
+                <li>
+                  <i class="fa-solid fa-check"></i>
+                  <strong>10 GB</strong> of disk space
+                </li>
+                <li>
+                  <i class="fa-solid fa-check"></i>
+                  <strong>100GB </strong>of bandwidth
+                </li>
+                <li>
+                  <i class="fa-solid fa-check"></i>
+                  <strong>1 MySQL</strong> database
+                </li>
+                <li>
+                  <i class="fa-solid fa-check"></i>
+                  <strong>5 email</strong> accounts
+                </li>
+                <li>
+                  <i class="fa-solid fa-check"></i>
+                  <strong>cPanel</strong> control panel
+                </li>
+                <li>
+                  <i class="fa-solid fa-check"></i>
+                  <strong>Free SSL</strong> certificate
+                </li>
+                <li>
+                  <i class="fa-solid fa-check"></i>
+                  <strong>24/7</strong> support
+                </li>
+              </ul>
+              <button class="cta-btn">SELECT</button>
+            </div>
+            <div class="pricing-card standard">
+              <div class="heading">
+                <h4>STANDARD</h4>
+                <p>for medium-sized businesses</p>
+              </div>
+              <p class="price">
+                $5
+                <sub>/month</sub>
+              </p>
+              <ul class="features">
+                <li>
+                  <i class="fa-solid fa-check"></i>
+                  <strong>Unlimited</strong> domain name
+                </li>
+                <li>
+                  <i class="fa-solid fa-check"></i>
+                  <strong>50 GB</strong> of disk space
+                </li>
+                <li>
+                  <i class="fa-solid fa-check"></i>
+                  <strong>500GB </strong>of bandwidth
+                </li>
+                <li>
+                  <i class="fa-solid fa-check"></i>
+                  <strong>10 MySQL</strong> database
+                </li>
+                <li>
+                  <i class="fa-solid fa-check"></i>
+                  <strong>50 email</strong> accounts
+                </li>
+                <li>
+                  <i class="fa-solid fa-check"></i>
+                  <strong>cPanel</strong> control panel
+                </li>
+                <li>
+                  <i class="fa-solid fa-check"></i>
+                  <strong>Free SSL</strong> certificate
+                </li>
+                <li>
+                  <i class="fa-solid fa-check"></i>
+                  <strong>24/7</strong> support
+                </li>
+              </ul>
+              <button class="cta-btn">SELECT</button>
+            </div>
+            <div class="pricing-card premium">
+              <div class="heading">
+                <h4>PREMIUM</h4>
+                <p>for small businesses</p>
+              </div>
+              <p class="price">
+                $10
+                <sub>/month</sub>
+              </p>
+              <ul class="features">
+                <li>
+                  <i class="fa-solid fa-check"></i>
+                  <strong>Unlimited</strong> domain name
+                </li>
+                <li>
+                  <i class="fa-solid fa-check"></i>
+                  <strong>100 GB</strong> of disk space
+                </li>
+                <li>
+                  <i class="fa-solid fa-check"></i>
+                  <strong>1TB </strong>of bandwidth
+                </li>
+                <li>
+                  <i class="fa-solid fa-check"></i>
+                  <strong>Unlimited MySQL</strong> database
+                </li>
+                <li>
+                  <i class="fa-solid fa-check"></i>
+                  <strong>Unlimited email</strong> accounts
+                </li>
+                <li>
+                  <i class="fa-solid fa-check"></i>
+                  <strong>cPanel</strong> control panel
+                </li>
+                <li>
+                  <i class="fa-solid fa-check"></i>
+                  <strong>Free SSL</strong> certificate
+                </li>
+                <li>
+                  <i class="fa-solid fa-check"></i>
+                  <strong>24/7 priority</strong> support
+                </li>
+                <li>
+                  <i class="fa-solid fa-check"></i>
+                  <strong>Advanced</strong> security features
+                </li>
+              </ul>
+              <button class="cta-btn">SELECT</button>
+            </div>
+          </section>
+
+          <footer>
+            <div class="footer-content">
+                <h3>SCANCEL</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam possimus, blanditiis consectetur autem voluptatem, doloribus sit libero tenetur aut impedit veniam alias hic ut laboriosam ratione dignissimos! Soluta, sint harum?</p>
+                <ul class="socials">
+                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                    <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+                    <li><a href="#"><i class="fa fa-linkedin-square"></i></a></li>
+                </ul>
+            </div>
+            <div class="footer-bottom">
+                <p>copyright &copy; <a href="#">SCANCEL</a>  </p>
+                        <div class="footer-menu">
+                          <ul class="f-menu">
+                            <li><a href="">Home</a></li>
+                            <li><a href="">About</a></li>
+                            <li><a href="">Contact</a></li>
+                            <li><a href="">Blog</a></li>
+                          </ul>
+                        </div>
+            </div>
+    
+        </footer>
+          
+    
+          
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <body>
+    <script src="{{url_for('static', filename='js/home.js') }}"></script>
+
+

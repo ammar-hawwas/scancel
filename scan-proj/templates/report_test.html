@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scan Results</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/alert.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}">
+    <style>
+        /* Grid layout for PC (3 columns) */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr); /* 3 columns */
+            gap: 20px; /* Space between charts */
+            padding: 20px;
+        }
+
+        /* Grid layout for tablets (2 columns) */
+        @media (max-width: 1024px) {
+            .grid-container {
+                grid-template-columns: repeat(2, 1fr); /* 2 columns */
+            }
+        }
+
+        /* Grid layout for mobile (1 column) */
+        @media (max-width: 768px) {
+            .grid-container {
+                grid-template-columns: 1fr; /* 1 column */
+            }
+        }
+
+        /* Chart styling */
+        .chart {
+            
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+    </style>
+</head>
+
+<body>
+    <div id="toast-alert" class="toast">
+        This is a side-to-side alert!
+    </div>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-close">
+            <i class="fas fa-close"></i>
+        </div>
+        <div class="logo">
+            <img src="{{url_for('static', filename='Assets/login/logo.png')}}" alt="Logo">
+            <div class="user-info">
+                {% if current_user.is_authenticated %}
+                <p>Welcome, {{ current_user.username }}!</p>
+                {% endif %}
+            </div>
+        </div>
+        <div class="nav-links">
+            <div>
+                <a href="#" onclick="home()">Home</a>
+                <a href="#" onclick="scrollWin()">Profile</a>
+                <a href="#" onclick="fun()">Scan</a>
+            </div>
+            <div class="actions">
+                <div class="rectangle" onclick="window.location.href='#'">
+                    <span>Settings</span>
+                </div>
+                <div class="rectangle" onclick="window.location.href='#'">
+                    <span>Contact Us</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Navbar -->
+        <div class="navbar">
+            <div class="sidebar-toggle">
+                <a href=""><img src="{{url_for('static', filename='Assets/login/logo.png')}}" alt="Logo" height="30px" width="30px"></a>
+                <h2 class="text-logo">SCAN <span class="red-text">CEL</span></h2>
+            </div>
+            <div class="menu">
+                <!-- Notifications Icon -->
+                <div class="notification-icon">
+                    <i class="fas fa-bell"></i> <!-- Font Awesome bell icon -->
+                    <span class="notification-count">3</span> <!-- Notification count -->
+                </div>
+
+                <!-- Settings Icon -->
+                <div class="settings-icon">
+                    <i class="fas fa-cog"></i> <!-- Font Awesome cog icon -->
+                </div>
+
+                <!-- User Menu Dropdown -->
+                <div class="user-menu">
+                    <div class="user-avatar">
+                        <img src="{{url_for('static', filename='Assets/profile/profilepic.png')}}" alt="User Avatar" style="width: 30px; height: 30px;">
+                    </div>
+                    <div class="dropdown-content">
+                        <a href="/profile">Profile</a>
+                        <a href="#">Settings</a>
+                        {% if current_user.is_authenticated %}
+                        <a href="#" onclick="logout()">Logout</a>
+                        {% else %}
+                        <a href="/signup">Signup</a>
+                        <a href="/login">Login</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% if figures %}
+        <div class="grid-container">
+            {{ figures|safe }}
+        </div>
+        {% endif %}
+        <!-- Result Table -->
+        <div class="result-table">
+            <h2>Scan Results</h2>
+            <table id="scan-results">
+                <thead>
+                    <tr>
+                        {% for column in report[0].keys() %}
+                            <th>{{ column }}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in report %}
+                        <tr>
+                            {% for value in row.values() %}
+                                <td>{{ value }}</td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        {% if firewall_report %}
+        <!-- firewall Result Table if exists -->
+        <div class="result-table">
+            <table id="scan-results">
+                <tbody>
+                    <tr>
+                        <td>{{ firewall_report[0] }}</td>
+                        <td>{{ firewall_report[1] }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+
+        <!-- Buttons under the table -->
+        <div class="button-container">
+            <button class="modern-btn" id="new-scan" onclick="goToNewScan()">
+                <i class="fas fa-plus"></i> New Scan
+            </button>
+            <button class="modern-btn" id="download-report" onclick="downloadReport()">
+                <i class="fas fa-download"></i> Download Report
+            </button>
+        </div>
+    </div>
+
+    
+
+    <script src="{{url_for('static', filename='js/report.js')}}"></script>
+    <script src="{{url_for('static', filename='js/main.js')}}"></script>
+</body>
+
+</html>

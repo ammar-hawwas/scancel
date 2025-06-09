@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scan Results</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/alert.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/scan_test.css')}}">
+ 
+</head>
+
+<body>
+    <div id="toast-alert" class="toast">
+        This is a side-to-side alert!
+    </div>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-close">
+            <i class="fas fa-close"></i>
+        </div>
+        <div class="logo">
+            <img src="{{url_for('static', filename='Assets/login/logo.png')}}" alt="Logo">
+            <div class="user-info">
+                {% if current_user.is_authenticated %}
+                <p>Welcome, {{ current_user.username }}!</p>
+                {% endif %}
+            </div>
+        </div>
+        <div class="nav-links">
+            <div>
+                <a href="#" onclick="home()">Home</a>
+                <a href="#" onclick="scrollWin()">Profile</a>
+                <a href="#" onclick="fun()">Scan</a>
+            </div>
+            <div class="actions">
+                <div class="rectangle" onclick="window.location.href='#'">
+                    <span>Settings</span>
+                </div>
+                <div class="rectangle" onclick="window.location.href='#'">
+                    <span>Contact Us</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Navbar -->
+        <div class="navbar">
+            <div class="sidebar-toggle">
+                <a href=""><img src="{{url_for('static', filename='Assets/login/logo.png')}}" alt="Logo" height="30px" width="30px"></a>
+                <h2 class="text-logo">SCAN <span class="red-text">CEL</span></h2>
+            </div>
+            <div class="menu">
+                <!-- Notifications Icon -->
+                <div class="notification-icon">
+                    <i class="fas fa-bell"></i> <!-- Font Awesome bell icon -->
+                    <span class="notification-count">3</span> <!-- Notification count -->
+                </div>
+
+                <!-- Settings Icon -->
+                <div class="settings-icon">
+                    <i class="fas fa-cog"></i> <!-- Font Awesome cog icon -->
+                </div>
+
+                <!-- User Menu Dropdown -->
+                <div class="user-menu">
+                    <div class="user-avatar">
+                        <img src="{{url_for('static', filename='Assets/profile/profilepic.png')}}" alt="User Avatar" style="width: 30px; height: 30px;">
+                    </div>
+                    <div class="dropdown-content">
+                        <a href="#">Profile</a>
+                        <a href="#">Settings</a>
+                        {% if current_user.is_authenticated %}
+                        <a href="#" onclick="logout()">Logout</a>
+                        {% else %}
+                        <a href="/signup">Signup</a>
+                        <a href="/login">Login</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="main-section">
+            <div class="container" id="scan-container">
+                <!-- Left Section: Instructions -->
+                <div>
+                    <div >
+                        <h2 class="steps-title">How To Use</h2>
+                        <ol class="steps-list">
+                            <li >Enter the target IP address in the input field.</li>
+                            <li >Choose the scan type using the dropdown.</li>
+                            <li >If you want a solution, activate the toggle.</li>
+                            <li >Agree to the Terms of Service.</li>
+                            <li >Click the <strong>START SCAN</strong> button to begin.</li>
+                        </ol>
+                    </div>
+                </div>
+        
+                <!-- Right Section: Scan Form -->
+                <div class="scan-form-section">
+                    <form class="scan-form" id="scan-form">
+                        <!-- Target Input -->
+                        <label for="target-ip" class="form-label">Target</label>
+                        <input type="text" id="target-ip" class="form-input ip-input" placeholder="Enter IP Address" required>
+        
+                        <!-- Scan Selection Dropdown -->
+                        <div class="form-group">
+                            <label for="scan-type" class="form-label">Scan Selection</label>
+                            <select id="scan-type" class="form-input dropdown">
+                                <option value="IntenseScan">Intense Scan</option>
+                                <option value="IntenseScanPlusUDP">Intense Scan plus UDP</option>
+                                <option value="IntenseScanAllTCP">Intense Scan, all TCP ports</option>
+                                <option value="IntenseScanNoPing">Intense Scan, no ping</option>
+                                
+                                <option value="PingScan">Ping Scan</option>
+                                
+                                <option value="QuickScan">Quick Scan</option>
+                                <option value="QuickScanPlus">Quick Scan plus</option>
+                                <option value="FireWallStatus">Firewall status</option>
+
+                                <option value="RegularScan">Regular Scan</option>
+                                <option value="SlowComprehensiveScan">Slow Comprehensive Scan</option>
+                            </select>
+                        </div>
+        
+                        <!-- Solution Option Toggle -->
+                        <div class="form-group">
+                            <label class="form-label">Solution Option</label>
+                            <div class="toggle-option">
+                                <span class="toggle-label">Option</span>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="solution-toggle" name="option" >
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </div>
+        
+                        <!-- Authorization Checkbox -->
+                        <div class="form-group authorization">
+                            <label for="authorization-checkbox" class="authorization-label">
+                                <input type="checkbox" id="authorization-checkbox" required>
+                                I am authorized to scan this target and I agree with the Terms of Service.
+                            </label>
+                        </div>
+        
+                        <!-- Start Scan Button -->
+                        <button type="submit" class="start-scan-button">START SCAN</button>
+                    </form>
+                </div>
+            </div>
+        
+            <!-- Loading Animation -->
+            <div class="loading-animation" id="loading-animation">
+         
+                <div class="borders">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+        
+                </div>
+        
+                <div class="text" id="ip-text-Container">
+                    <p></p>
+               
+               
+                    <div class="scan"></div>
+                </div>
+                    
+            </div>
+            <!-- Post-Scan Section -->
+            <section class="post-scan-section" id="post-scan" aria-hidden="true">
+                <img src="{{url_for('static', filename='Assets/scan page/scan.avif')}}" alt="Scan completed illustration" width="100%" height="100%">
+                <p class="scan-completed-text" id="scan-completed">Scan completed for IP 127.0.0</p>
+                <div class="post-scan-buttons">
+                    <button class="btn-2" onclick="downloadReport()"><span>Download Report</span></button>
+                    <button class="btn-2" onclick="reviewReport()"><span>Review Report</span></button>
+                    <button class="btn-2" onclick="newScan()"><span>New Scan</span></button>
+                </div>
+            </section>
+        </div>
+</div>
+
+    <script src="{{url_for('static', filename='js/main.js')}}"></script>
+
+    <script src="{{url_for('static', filename='js/scan.js')}}"></script>
+</body>
+
+</html>

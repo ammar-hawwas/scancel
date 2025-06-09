@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scan Form</title>
+  <link rel="stylesheet" href="{{url_for('static', filename='css/scan.css')}}">
+  <link rel="stylesheet" href="{{url_for('static', filename='css/alert.css')}}">
+
+  
+</head>
+<body>
+         
+    <div class="navbar">  <a href="#" title="Logo">
+        <img class="logo" src="{{url_for('static', filename='Assets/login/logo.png')}}" alt="Logo">
+    
+    </a>
+    <h2 style="position: absolute;top: 1.5rem; left: 4.5rem;">SCANCEL</h2>
+    <div id="toast-alert" class="toast">
+        This is a side-to-side alert!
+    </div>
+    
+<div class="buttons">
+    
+    <div class="button-wrapper" onclick="home()">
+        <button class="btn-2" style="position: absolute;
+        top: .7rem;
+        left: 16rem;
+        width: 124px;
+        font-size: larger;"> 
+            <span>Home</span>
+        </button>
+        <button class="btn-2" style="position: absolute;
+        top: .7rem;
+        left: 26rem;
+        width: 124px;
+        font-size: larger;" onclick="scrollWin()"> 
+            <span>Profile</span>
+        </button>
+        <button class="btn-2" style="position: absolute;
+        top: .7rem;
+        left: 36rem;
+        width: 124px;
+        font-size: larger;"  onclick="fun()"> 
+            <span>scan</span>
+        </button>
+        
+    <!-- Display User Name and Logout Button -->
+    <button class="btn-2" style="position: absolute; top: .7rem; left: 75rem; width: 124px; font-size: larger;" onclick="logout()">
+        <span>Logout</span>
+      </button>
+      <p style="position: absolute; top: 1.5rem; left: 65rem; font-size: larger;">Welcome, {{ current_user.username }}!</p>
+  
+    </div>
+</div>
+</div>
+    
+ <div class="mainsec">
+    <div class="container">
+        <!-- Left Section -->
+        <div class="left-section">
+          <h1 class="scancle-title">SCAN<span class="red-text">CEL</span></h1>
+          <div class="steps">
+            <h2>How To Use</h2>
+            <ol>
+              <li>Enter the target IP address in the input field.</li>
+              <li>Choose the scan Type using Dropdown.</li>
+              <li>If you want a solution activate the toggle.</li>
+              <li>Agree to the Terms of Service.</li>
+              <li>Click the <b>START SCAN</b> button to begin.</li>
+            </ol>
+          </div>
+        </div>
+    
+        <div class="right-section">
+            <form class="form-container" id="form-container">
+                <label class="section-title">Target</label>
+                <input type="text" placeholder="Enter IP Address" class="ip-input">
+                <div class="port-selection">
+                    <label class="section-title">Scan Selection</label>
+                    <select class="dropdown">
+                        <option value="IntenseScan">Intense ScanS</option>
+                        <option value="IntenseScanUDP">Intense Scan plus UDP</option>
+                        <option value="IntenseScanTCP">Intense Scan, all TCP ports</option>
+                        <option value="IntenseScanNoPing">Intense Scan, no ping</option>
+                        <option value="PingScan">Ping Scan</option>
+                        <option value="QuickScan">Quick Scan</option>
+                        <option value="QuickScanPlus">Quick Scan plus</option>
+                        <option value="QuickTraceroute"> Quick Traceroute</option>
+                        <option value="RegularScan">Regular Scan</option>
+                        <option value="SlowComprehensiveScan"> Slow Comprehensive Scan</option>
+                        
+                    </select>
+                </div>
+                
+                
+                
+                
+                
+                
+                <div class="scan-options">
+                    <label class="section-title">Solution Option</label>
+                    <div class="options">
+                        <div class="option">
+                            <span>Option</span>
+                            <label class="toggle-switch">
+                                <input type="checkbox">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+               
+                <div class="authorization">
+                    <label>
+                        <input type="checkbox" id="scanType">
+                        I am authorized to scan this target and I agree with the Terms of Service.
+                    </label>
+                </div>
+
+                <button class="start-scan">START SCAN</button>
+            </form>
+        </div>
+    </div>
+    
+        <div class="loading-animation" id="loading-animation">
+         
+            <div class="borders">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+    
+            </div>
+    
+            <div class="text" id="ip-textContainer">
+                <p></p>
+           
+           
+            <div class="scan"></div>
+    
+    
+        </div>
+    </div>
+
+    <div class="post-scan" id="post-scan">
+        <img src="{{url_for('static', filename='Assets/scan page/scan.avif')}}" srcset="" alt="" style="width: 230px;">
+       <p style="font-weight: bolder;
+        font-size: x-large;
+        margin-bottom: -6px;" id="scan-completed">Scan Completed On 192.168.1.1</p>
+        
+        <button class="btn-2" onclick="downloadReport()"><span>Download Report</span></button>
+        <button class="btn-2" onclick="reviewReport()"><span>Review Report</span></button>
+        <button class="btn-2" onclick="newScan()"><span>New Scan</span></button>
+    </div>
+</div>
+<div class="aniform"> </div>
+
+<script src="{{url_for('static', filename='js/scan.js')}}"></script>
+</body>
+</html>
